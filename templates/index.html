@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Shopping List</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+	<h1>Shopping List</h1>
+	{% if items|length < 1 %} <p>Add a shopping item</p>
+		{% else %}
+		<table>
+			{% for item in items %}
+			<tr>
+				<td>{{ item.name }}</td>
+				<td>
+					<a href="/delete/{{item.id}}"><i class="fas fa-trash-alt"></i></a>
+					<a href="/update/{{item.id}}"><i class="fas fa-edit"></i></a>
+				</td>
+			</tr>
+			{% endfor %}
+		</table>
+		{% endif %}
+		<form action="/" method="POST">
+			<input type="text" name="item" id="item">
+			<input type="submit" value="Add Item">
+		</form>
+</div>
+{% endblock %}
